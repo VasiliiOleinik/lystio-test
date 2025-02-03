@@ -4,7 +4,7 @@ import SearchFilters from '../SearchFilters';
 
 const MainSection = () => {
     return (
-        <div className='d-flex w-full h-[calc(100vh-93px)] bg-center bg-no-repeat'
+        <div className='d-flex w-full min-h-[calc(100vh-87px)] bg-center bg-no-repeat'
             style={{ backgroundImage: "url('/main_bg.png')", backgroundSize: 'cover' }}
         >
             <Container>

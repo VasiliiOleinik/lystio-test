@@ -19,7 +19,7 @@ const Input = ({
                     placeholder={placeholder}
                     type="text"
                     id={id}
-                    className={`placeholder-lightGreyLystio placeholder:font-medium placeholder:text-base 
+                    className={`placeholder-middleGreyLystio placeholder:font-medium placeholder:text-base 
                         outline-none border-b border-b-transparent focus:border-purpleLystio transition
                     ${className}`
                     }

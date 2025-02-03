@@ -11,7 +11,8 @@ export default {
       colors: {
         purpleLystio: "#A540F3",
         greyLystio: "#4F4040",
-        lightGreyLystio: "#787878",
+        middleGreyLystio: "#787878",
+        lightGreyLystio: "#C6C6C6"
       },
       borderRadius: {
         '1000px': '1000px',

@@ -9,7 +9,7 @@ const Header = () => {
             <Navigation />
             <div className='flex items-center'>
                 <Button className='mr-3'>Log-in</Button>
-                <Button isActive={true}>Register</Button>
+                <Button state="active">Register</Button>
             </div>
         </div>
     );
