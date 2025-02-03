@@ -2,7 +2,7 @@ import React from 'react';
 import Container from '../Container';
 import SearchFilters from '../SearchFilters';
 
-const MainSection = () => {
+const HeroSection = () => {
     return (
         <div className='d-flex w-full min-h-[calc(100vh-87px)] bg-center bg-no-repeat'
             style={{ backgroundImage: "url('/main_bg.png')", backgroundSize: 'cover' }}
@@ -16,4 +16,4 @@ const MainSection = () => {
     );
 };
 
-export default MainSection;
+export default HeroSection;
