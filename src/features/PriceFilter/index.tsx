@@ -6,7 +6,9 @@ const PriceFilter = () => {
         <>
             <Input 
                 placeholder='Select Price Range'
-                label="Price">
+                label="Price"
+                id="price-input"
+            >
                 <img src="/price.svg" alt="Price" />
             </Input>
         </>

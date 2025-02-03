@@ -6,7 +6,9 @@ const CategoryFilter = () => {
         <>
             <Input 
                 placeholder='Select Category'
-                label="Category">
+                label="Category"
+                id="category-input"
+            >
                 <img src="/category.svg" alt="Category" />
             </Input>
         </>

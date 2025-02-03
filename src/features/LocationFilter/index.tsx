@@ -6,7 +6,9 @@ const LocationFilter = () => {
         <>
             <Input 
                 placeholder='Search address, neighbourhood, city, or ZIP code'
-                label="Location">
+                label="Location"
+                id="location-input"
+            >
                 <img src="/search.svg" alt="Search" />
             </Input>
         </>
