@@ -1,0 +1,42 @@
+import { motion } from "framer-motion";
+import { cn } from "@/utils";
+import { ToggleSwitchProps } from "./types";
+import { useToggleSwitch } from "./useToggleSwitch";
+
+const ToggleSwitch = ({ items, className = "" }: ToggleSwitchProps) => {
+  const {
+    sliderStyle, 
+    handleButtonClick,     
+    rentType,
+    buttonsRef
+  } = useToggleSwitch({items});
+
+  return (
+    <div className={`relative inline-flex items-center bg-white rounded-full border border-purpleLystio w-fit ${className}`}>
+      <motion.div
+        className="absolute top-0 h-full bg-purpleLystio rounded-full"
+        animate={sliderStyle}
+        transition={{ duration: 0.3, ease: "easeOut" }}
+      />
+
+      {items.map((item, index) => (
+        <button
+          key={item.value}
+          ref={(el) => {
+            buttonsRef.current[index] = el;
+          }}
+          className={cn(
+            "relative z-10 text-base font-medium py-4 px-10 transition-colors flex items-center justify-center whitespace-nowrap",
+            rentType === item.value ? "text-white" : "text-black"
+          )}
+          onClick={() => handleButtonClick(item.value)}
+        >
+          {item.icon && <span className="mr-2 flex-shrink-0">{item.icon}</span>}
+          {item.name}
+        </button>
+      ))}
+    </div>
+  );
+};
+
+export default ToggleSwitch;

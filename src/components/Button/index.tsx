@@ -5,7 +5,7 @@ import { ButtonProps, buttonVariants } from './helpers';
 
 
 const Button = ({
-    type = BUTTON_TYPES.buttom,
+    type = BUTTON_TYPES.button,
     state = "inactive", 
     size = "medium",
     children,

@@ -17,6 +17,9 @@ export default {
       borderRadius: {
         '1000px': '1000px',
       },
+      boxShadow: {
+        custom: "0px 14px 32px rgba(0, 0, 0, 0.1)",
+      },
     },
   },
   plugins: [],
