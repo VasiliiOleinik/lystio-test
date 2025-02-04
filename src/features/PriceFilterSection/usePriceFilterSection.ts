@@ -7,19 +7,12 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 
 export const usePriceFilterSection = () => {
   const { searchParams } = useFilters();
-  const { maxPrice, minPrice } = useFiltersStore();
+  const { maxPrice, minPrice, setMinPrice, setMaxPrice } = useFiltersStore();
   const dropdownRef = useRef<HTMLElement>(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const minPriceURL = Number(searchParams?.get('minPrice')) || minPrice;
   const maxPriceURL = Number(searchParams?.get('maxPrice')) || maxPrice;
-
-  useClickOutside(dropdownRef, () => setIsMenuOpen(false));
-
-  const { data: hystogramData, isLoading } = useQuery({
-    queryKey: ['hystogramData'],
-    queryFn: getHystogramData,
-  });
 
   const [maxAndMinPrice, setMaxAndMinPrice] = useState<[number, number]>([
     minPriceURL,
@@ -29,6 +22,17 @@ export const usePriceFilterSection = () => {
     minPriceURL,
     maxPriceURL,
   ]);
+
+  useClickOutside(dropdownRef, () => {
+    setMinPrice(priceRange[0]);
+    setMaxPrice(priceRange[1]);
+    setIsMenuOpen(false);
+  });
+
+  const { data: hystogramData, isLoading } = useQuery({
+    queryKey: ['hystogramData'],
+    queryFn: getHystogramData,
+  });
 
   useEffect(() => {
     if (!hystogramData || isLoading) return;
