@@ -3,9 +3,14 @@ import { cn } from '@/utils';
 import { ToggleSwitchProps } from './types';
 import { useToggleSwitch } from './useToggleSwitch';
 
-const ToggleSwitch = ({ items, className = '' }: ToggleSwitchProps) => {
-  const { sliderStyle, handleButtonClick, rentType, buttonsRef } =
-    useToggleSwitch({ items });
+const ToggleSwitch = ({
+  items,
+  className = '',
+  onChange,
+  deafultValue = '',
+}: ToggleSwitchProps) => {
+  const { sliderStyle, handleButtonClick, sliderValue, buttonsRef } =
+    useToggleSwitch({ items, deafultValue });
 
   return (
     <div
@@ -25,9 +30,12 @@ const ToggleSwitch = ({ items, className = '' }: ToggleSwitchProps) => {
           }}
           className={cn(
             'relative z-10 text-base font-medium py-4 px-10 transition-colors flex items-center justify-center whitespace-nowrap',
-            rentType === item.value ? 'text-white' : 'text-black'
+            sliderValue === item.value ? 'text-white' : 'text-black'
           )}
-          onClick={() => handleButtonClick(item.value)}
+          onClick={() => {
+            handleButtonClick(item.value);
+            onChange(item.value);
+          }}
         >
           {item.icon && <span className="mr-2 flex-shrink-0">{item.icon}</span>}
           {item.name}

@@ -6,7 +6,6 @@ import { useLocationFilter } from './useLocationFilter';
 import Cities from './Cities';
 import Districts from './Districts';
 import RecentLocations from './RecentLocations';
-import AddressAutocomplete from './AddressAutocomplete';
 
 const LocationFilter = () => {
   const {
@@ -21,7 +20,6 @@ const LocationFilter = () => {
     handleDistrictSelect,
     recentSearch,
 
-    handleSearch,
     searchValue,
     setSearchValue,
   } = useLocationFilter();

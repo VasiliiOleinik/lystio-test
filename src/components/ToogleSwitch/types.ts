@@ -8,4 +8,5 @@ export type ToggleItem = {
 
 export type ToggleSwitchProps = ClassName & {
   items: ToggleItem[];
+  onChange: (value: string) => void;
 };

@@ -12,17 +12,23 @@ const useFilters = (): UseFilters => {
     setParams(new URLSearchParams(searchParams?.toString() || ''));
   }, [searchParams]);
 
-  const setFilter = (key: string, value: string | number | null) => {
+  const setFilters = (filters: Record<string, string | number | null>) => {
     const newParams = new URLSearchParams(params.toString());
-    if (value) {
-      newParams.set(key, String(value));
-    } else {
-      newParams.delete(key);
-    }
+
+    // Обновляем все переданные параметры
+    Object.entries(filters).forEach(([key, value]) => {
+      if (value) {
+        newParams.set(key, String(value));
+      } else {
+        newParams.delete(key);
+      }
+    });
+
+    // Обновляем URL один раз
     router.push(`?${newParams.toString()}`);
   };
 
-  return { searchParams, setFilter };
+  return { searchParams, setFilters };
 };
 
 export default useFilters;

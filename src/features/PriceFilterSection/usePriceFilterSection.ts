@@ -64,7 +64,7 @@ export const usePriceFilterSection = () => {
     });
   }, [priceRange, hystogramData?.histogram]);
 
-  const searchPriceValue = `${minPrice} - ${maxPrice} €`;
+  const searchPriceValue = `${minPriceURL} - ${maxPriceURL} €`;
 
   return {
     dropdownRef,

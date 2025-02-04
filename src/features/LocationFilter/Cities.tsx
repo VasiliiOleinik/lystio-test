@@ -13,7 +13,7 @@ const Cities = ({ citiesAndDistricts, handleCitySelect, selectedCity }) => {
         return (
           <button
             key={city.id}
-            onClick={() => handleCitySelect(city.id)}
+            onClick={() => handleCitySelect(city)}
             className={`flex items-center rounded w-full text-left mb-2 relative ${
               isActive ? 'bg-activeOption' : 'hover:bg-activeOption'
             }`}

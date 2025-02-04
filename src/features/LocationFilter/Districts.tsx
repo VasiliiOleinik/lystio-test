@@ -12,7 +12,7 @@ const Districts = ({ city, handleDistrictSelect, selectedDistrict }) => {
         {city.children.map((district) => (
           <li
             key={district.id}
-            onClick={() => handleDistrictSelect(district.id)}
+            onClick={() => handleDistrictSelect(district)}
             className={`flex px-4 py-1 items-center cursor-pointer rounded ${
               selectedDistrict === district.id
                 ? 'bg-activeOption'

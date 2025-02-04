@@ -14,23 +14,31 @@ import { useDebounce } from '@/hooks/useDebounce';
 export const useLocationFilter = () => {
   const { searchParams } = useFilters();
   const { location, setLocation } = useFiltersStore();
-  const searchLocationValue = searchParams?.get('location') || location || '';
+  const searchLocationValue =
+    searchParams?.get('location') || location?.id || '';
+  const locationName =
+    searchParams?.get('locationName') || location?.name || '';
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const dropdownRef = useRef<HTMLElement>(null);
-  const [searchValue, setSearchValue] = useState('');
+  const [searchValue, setSearchValue] = useState(locationName);
   const [selectedCity, setSelectedCity] = useState<string | null>(null);
   const [selectedDistrict, setSelectedDistrict] = useState<string | null>(null);
   const debouncedSearchTerm = useDebounce(searchValue);
 
-  const handleCitySelect = (cityId: string) => {
-    setSelectedCity(cityId);
+  function handleSetLocation(location) {
+    setLocation(location);
+    setSearchValue(location.name);
+  }
+
+  const handleCitySelect = (location) => {
+    setSelectedCity(location.id);
     setSelectedDistrict(null);
-    setLocation(cityId);
+    handleSetLocation(location);
   };
 
-  const handleDistrictSelect = (districtId: string) => {
-    setSelectedDistrict(districtId);
-    setLocation(districtId);
+  const handleDistrictSelect = (location) => {
+    setSelectedDistrict(location.id);
+    handleSetLocation(location);
   };
 
   useClickOutside(dropdownRef, () => setIsMenuOpen(false));
