@@ -10,8 +10,10 @@ import { useFiltersStore } from '@/store/useFiltersStore';
 import { useQuery } from '@tanstack/react-query';
 import { useRef, useState } from 'react';
 import { useDebounce } from '@/hooks/useDebounce';
+import { LocationType } from '@/types';
 
 export const useLocationFilter = () => {
+  const dropdownRef = useRef<HTMLDivElement>(null);
   const { searchParams } = useFilters();
   const { location, setLocation } = useFiltersStore();
   const searchLocationValue =
@@ -19,42 +21,47 @@ export const useLocationFilter = () => {
   const locationName =
     searchParams?.get('locationName') || location?.name || '';
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const dropdownRef = useRef<HTMLElement>(null);
   const [searchValue, setSearchValue] = useState(locationName);
-  const [selectedCity, setSelectedCity] = useState<string | null>(null);
-  const [selectedDistrict, setSelectedDistrict] = useState<string | null>(null);
+  const [selectedCity, setSelectedCity] = useState<string>('');
+  const [selectedDistrict, setSelectedDistrict] = useState<string>('');
+
   const debouncedSearchTerm = useDebounce(searchValue);
 
-  function handleSetLocation(location) {
+  function handleSetLocation(location: LocationType): void {
     setLocation(location);
     setSearchValue(location.name);
   }
 
-  const handleCitySelect = (location) => {
+  function handleCitySelect(location: LocationType): void {
     setSelectedCity(location.id);
-    setSelectedDistrict(null);
+    setSelectedDistrict('');
     handleSetLocation(location);
-  };
+  }
 
-  const handleDistrictSelect = (location) => {
+  function handleDistrictSelect(location: LocationType): void {
     setSelectedDistrict(location.id);
     handleSetLocation(location);
     setIsMenuOpen(false);
-  };
+  }
 
-  useClickOutside(dropdownRef, () => setIsMenuOpen(false));
+  useClickOutside({
+    ref: dropdownRef,
+    callback: () => {
+      setIsMenuOpen(false);
+    },
+  });
 
-  const { data: citiesAndDistricts } = useQuery({
+  const { data: citiesAndDistricts = [] } = useQuery({
     queryKey: ['citiesAndDistricts'],
     queryFn: getCitiesAndDistricts,
   });
 
-  const { data: recentSearch } = useQuery({
+  const { data: recentSearch = [] } = useQuery({
     queryKey: ['recentSearch'],
     queryFn: getRecentSearch,
   });
 
-  const { data: searchResults } = useQuery({
+  const { data: searchResults = [] } = useQuery({
     queryKey: ['mapboxSearch', debouncedSearchTerm],
     queryFn: () => fetchSearchResults(debouncedSearchTerm),
     enabled: !!debouncedSearchTerm,
@@ -70,13 +77,11 @@ export const useLocationFilter = () => {
     setIsMenuOpen,
     dropdownRef,
     citiesAndDistricts,
-
     selectedCity,
     selectedDistrict,
     handleCitySelect,
     handleDistrictSelect,
     recentSearch,
-
     searchValue,
     setSearchValue,
   };

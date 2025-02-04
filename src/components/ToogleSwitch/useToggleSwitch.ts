@@ -1,20 +1,18 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { ToggleItem } from './types';
+import { UseToggleSwitchProps } from './types';
+import { INITIAL_LEFT, INITIAL_WIDTH } from './constants';
 
 export const useToggleSwitch = ({
   items,
   deafultValue,
-}: {
-  items: ToggleItem[];
-  deafultValue?: string;
-}) => {
+}: UseToggleSwitchProps) => {
   const [sliderValue, setSliderValue] = useState<string>(
     deafultValue || items[0].value
   );
   const [sliderStyle, setSliderStyle] = useState<{
     width: number;
     left: number;
-  }>({ width: 0, left: 0 });
+  }>({ width: INITIAL_WIDTH, left: INITIAL_LEFT });
   const buttonsRef = useRef<(HTMLButtonElement | null)[]>([]);
 
   const updateSliderPosition = useCallback(

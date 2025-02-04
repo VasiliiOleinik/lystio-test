@@ -1,13 +1,14 @@
 import Input from '@/components/Input';
 import React from 'react';
+import { PriceInputsProps } from './types';
 
-const PriceInputs = ({ setValues, values }) => {
-  const handleMinChange = (value) => {
+const PriceInputs = ({ setValues, values }: PriceInputsProps) => {
+  const handleMinChange = (value: number): void => {
     const newMin = Math.min(value, values[1]);
     setValues([newMin, values[1]]);
   };
 
-  const handleMaxChange = (value) => {
+  const handleMaxChange = (value: number): void => {
     const newMax = Math.max(value, values[0]);
     setValues([values[0], newMax]);
   };
@@ -18,16 +19,16 @@ const PriceInputs = ({ setValues, values }) => {
         <Input
           label="Min"
           type="number"
-          value={values[0]}
-          onChange={(value) => handleMinChange(value)}
+          value={String(values[0])}
+          onChange={(value) => handleMinChange(Number(value))}
         />
       </div>
       <div className="flex flex-col w-[33%]">
         <Input
           label="Max"
           type="number"
-          value={values[1]}
-          onChange={(value) => handleMaxChange(value)}
+          value={String(values[1])}
+          onChange={(value) => handleMaxChange(Number(value))}
         />
       </div>
     </div>

@@ -9,9 +9,14 @@ export const useCategoryFilter = () => {
   const { category, setCategory } = useFiltersStore();
   const searchCategoryValue = searchParams?.get('category') || category || '';
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const dropdownRef = useRef<HTMLElement>(null);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
-  useClickOutside(dropdownRef, () => setIsMenuOpen(false));
+  useClickOutside({
+    ref: dropdownRef,
+    callback: () => {
+      setIsMenuOpen(false);
+    },
+  });
 
   function handleSetCategory(value: string): void {
     setCategory(value);

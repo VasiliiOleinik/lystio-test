@@ -1,3 +1,3 @@
 import { Children, ClassName } from '@/types';
 
-export type CardProps = Children & ClassName;
+export type AnimatedCardProps = Children & ClassName;

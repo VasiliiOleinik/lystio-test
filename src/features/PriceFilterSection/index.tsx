@@ -1,11 +1,12 @@
 import FilterInput from '@/components/FilterInput';
 import React from 'react';
-import Card from '@/components/Card';
 import { AnimatePresence } from 'motion/react';
 import { usePriceFilterSection } from './usePriceFilterSection';
 import HistorygramBars from './HistorygramBars';
 import PriceInputs from './PriceInputs';
 import { Range, getTrackBackground } from 'react-range';
+import AnimatedCard from '@/components/Card';
+import { STEP } from './constants';
 
 const PriceFilterSection = () => {
   const {
@@ -39,13 +40,7 @@ const PriceFilterSection = () => {
       </div>
       <AnimatePresence>
         {isMenuOpen && (
-          <Card
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.2, ease: 'easeOut' }}
-            className="absolute top-[calc(100%+25px)]"
-          >
+          <AnimatedCard>
             <div className="min-w-[500px] max-w-[610px] w-full">
               <p className="text-lg font-semibold mb-3">Price Range</p>
 
@@ -56,7 +51,7 @@ const PriceFilterSection = () => {
 
               <Range
                 values={priceRange}
-                step={1}
+                step={STEP}
                 min={min}
                 max={max}
                 onChange={(values) => setPriceRange(values)}
@@ -87,7 +82,7 @@ const PriceFilterSection = () => {
 
               <PriceInputs setValues={setPriceRange} values={priceRange} />
             </div>
-          </Card>
+          </AnimatedCard>
         )}
       </AnimatePresence>
     </div>

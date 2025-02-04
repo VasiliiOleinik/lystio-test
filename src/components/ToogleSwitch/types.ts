@@ -9,4 +9,10 @@ export type ToggleItem = {
 export type ToggleSwitchProps = ClassName & {
   items: ToggleItem[];
   onChange: (value: string) => void;
+  deafultValue?: string;
+};
+
+export type UseToggleSwitchProps = {
+  items: ToggleItem[];
+  deafultValue?: string;
 };

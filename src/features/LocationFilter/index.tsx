@@ -1,4 +1,3 @@
-import Card from '@/components/Card';
 import FilterInput from '@/components/FilterInput';
 import { AnimatePresence } from 'motion/react';
 import React from 'react';
@@ -6,6 +5,8 @@ import { useLocationFilter } from './useLocationFilter';
 import Cities from './Cities';
 import Districts from './Districts';
 import RecentLocations from './RecentLocations';
+import AnimatedCard from '@/components/Card';
+import { cn } from '@/utils';
 
 const LocationFilter = () => {
   const {
@@ -13,13 +14,11 @@ const LocationFilter = () => {
     setIsMenuOpen,
     dropdownRef,
     citiesAndDistricts,
-
     selectedCity,
     selectedDistrict,
     handleCitySelect,
     handleDistrictSelect,
     recentSearch,
-
     searchValue,
     setSearchValue,
   } = useLocationFilter();
@@ -37,9 +36,7 @@ const LocationFilter = () => {
           label="Location"
           id="location-input"
           value={searchValue}
-          onChange={(e) => {
-            setSearchValue(e.target.value);
-          }}
+          onChange={(e) => setSearchValue(e.target.value)}
         >
           <img src="/search.svg" alt="Search" />
         </FilterInput>
@@ -47,15 +44,19 @@ const LocationFilter = () => {
 
       <AnimatePresence>
         {isMenuOpen && (
-          <Card
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.2, ease: 'easeOut' }}
-            className="absolute top-[calc(100%+25px)] min-w-[444px] w-full"
-          >
-            <div className="min-w-[372px] max-w-[772px] flex items-start justify-start">
-              <div className="flex flex-col max-w-1/2 w-full max-h-[400px] overflow-auto">
+          <AnimatedCard>
+            <div
+              className={cn(
+                `min-w-[370px] flex items-start justify-start`,
+                city ? 'w-[772px]' : ''
+              )}
+            >
+              <div
+                className={cn(
+                  `flex flex-col max-w-1/2 w-full max-h-[400px] overflow-auto`,
+                  city ? 'max-w-1/2' : ''
+                )}
+              >
                 <Cities
                   handleCitySelect={handleCitySelect}
                   selectedCity={selectedCity}
@@ -64,20 +65,22 @@ const LocationFilter = () => {
                 {!!recentSearch?.length && (
                   <RecentLocations
                     recentSearch={recentSearch}
-                    handleCitySelect={handleCitySelect}
-                    selectedCity={selectedCity}
+                    handleDistrictSelect={handleDistrictSelect}
+                    selectedDistrict={selectedDistrict}
                   />
                 )}
               </div>
               {!!city && (
-                <Districts
-                  city={city}
-                  handleDistrictSelect={handleDistrictSelect}
-                  selectedDistrict={selectedDistrict}
-                />
+                <div className="flex flex-col max-w-1/2 w-full max-h-[400px] overflow-auto">
+                  <Districts
+                    city={city}
+                    handleDistrictSelect={handleDistrictSelect}
+                    selectedDistrict={selectedDistrict}
+                  />
+                </div>
               )}
             </div>
-          </Card>
+          </AnimatedCard>
         )}
       </AnimatePresence>
     </div>

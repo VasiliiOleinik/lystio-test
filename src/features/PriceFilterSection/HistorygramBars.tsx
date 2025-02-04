@@ -1,6 +1,10 @@
 import React from 'react';
+import { HistorygramBarsProps } from './types';
 
-const HistorygramBars = ({ histogramBars, maxHistogramValue }) => {
+const HistorygramBars = ({
+  histogramBars,
+  maxHistogramValue,
+}: HistorygramBarsProps) => {
   return (
     <div className="relative w-full h-20 flex items-end">
       {histogramBars.map((bar, idx) => (

@@ -1,6 +1,7 @@
+import { DistrictsType } from '@/api/types';
 import React from 'react';
 
-const LocationItem = ({ district }) => {
+const LocationItem = ({ district }: { district: DistrictsType }) => {
   const { name, postal_code } = district;
 
   return (

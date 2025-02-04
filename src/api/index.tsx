@@ -1,28 +1,36 @@
 import axiosInstance from '@/adapters/axiosInstance';
 import { MAPBOX_BASE_URL } from '@/features/LocationFilter/constants';
 import axios from 'axios';
+import {
+  CitiesAndDistrictsType,
+  HystogramDataType,
+  SearchCountType,
+  TenementSearchQueryProps,
+  TenementSearchType,
+} from './types';
+import { LocationType } from '@/types';
 
-export async function getHystogramData() {
+export async function getHystogramData(): Promise<HystogramDataType> {
   const { data } = await axiosInstance.post('/tenement/search/histogram');
 
   return data;
 }
 
-export async function getCitiesAndDistricts() {
+export async function getCitiesAndDistricts(): Promise<
+  CitiesAndDistrictsType[]
+> {
   const { data } = await axiosInstance.get('/geo/boundary/popular');
 
   return data;
 }
 
-export async function getRecentSearch() {
+export async function getRecentSearch(): Promise<LocationType[]> {
   const { data } = await axiosInstance.get('/geo/search/recent');
 
   return data;
 }
 
-export async function fetchSearchResults(searchTerm: string) {
-  if (!searchTerm) return [];
-
+export async function fetchSearchResults(searchTerm: string): Promise<any> {
   const { data } = await axios.get(
     `${MAPBOX_BASE_URL}/${encodeURIComponent(searchTerm)}.json`,
     {
@@ -38,13 +46,15 @@ export async function fetchSearchResults(searchTerm: string) {
   return data.features || [];
 }
 
-export async function getSearchCount() {
+export async function getSearchCount(): Promise<SearchCountType> {
   const { data } = await axiosInstance.post('/tenement/search/count');
 
   return data;
 }
 
-export async function tenementSearch(query: any) {
+export async function tenementSearch(
+  query: TenementSearchQueryProps
+): Promise<TenementSearchType> {
   const { data } = await axiosInstance.post('/tenement/search', query);
 
   return data;

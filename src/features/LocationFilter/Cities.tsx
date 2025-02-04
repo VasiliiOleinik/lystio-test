@@ -1,9 +1,14 @@
 import React from 'react';
 import { LOCATIONS_IMAGES } from './constants';
+import { CitiesComponentType } from './types';
 
-const Cities = ({ citiesAndDistricts, handleCitySelect, selectedCity }) => {
+const Cities = ({
+  citiesAndDistricts,
+  handleCitySelect,
+  selectedCity,
+}: CitiesComponentType) => {
   return (
-    <div className="">
+    <div>
       <p className="text-sm font-medium text-textLightGrey opacity-60 mb-3">
         Popular Locations
       </p>
@@ -19,7 +24,7 @@ const Cities = ({ citiesAndDistricts, handleCitySelect, selectedCity }) => {
             }`}
           >
             <img
-              src={LOCATIONS_IMAGES[city.name]}
+              src={LOCATIONS_IMAGES[city.name as keyof typeof LOCATIONS_IMAGES]}
               alt="City"
               width={47}
               height={47}

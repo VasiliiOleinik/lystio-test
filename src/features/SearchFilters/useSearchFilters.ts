@@ -35,7 +35,7 @@ export const useSearchFilters = () => {
     });
 
     mutate({
-      withinId: location,
+      withinId: location.id,
       rentType,
       type: category,
       rent: [minPrice, maxPrice],

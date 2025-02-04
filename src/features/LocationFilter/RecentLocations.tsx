@@ -1,11 +1,12 @@
 import React from 'react';
 import LocationItem from './LocationItem';
+import { RecentLocationsType } from './types';
 
 const RecentLocations = ({
   recentSearch,
   handleDistrictSelect,
   selectedDistrict,
-}) => {
+}: RecentLocationsType) => {
   return (
     <div>
       <p className="text-sm font-medium text-textLightGrey opacity-60 mb-3">

@@ -1,9 +1,14 @@
 import React from 'react';
 import LocationItem from './LocationItem';
+import { DistrictsComponentType } from './types';
 
-const Districts = ({ city, handleDistrictSelect, selectedDistrict }) => {
+const Districts = ({
+  city,
+  handleDistrictSelect,
+  selectedDistrict,
+}: DistrictsComponentType) => {
   return (
-    <div className="max-w-1/2 w-full max-h-[400px] overflow-auto">
+    <>
       <p className="text-sm font-medium text-textLightGrey opacity-60 mb-2">
         Districts in {city.name}
       </p>
@@ -23,7 +28,7 @@ const Districts = ({ city, handleDistrictSelect, selectedDistrict }) => {
           </li>
         ))}
       </ul>
-    </div>
+    </>
   );
 };
 

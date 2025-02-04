@@ -4,11 +4,12 @@ import useFilters from '@/hooks/useFilters';
 import { useFiltersStore } from '@/store/useFiltersStore';
 import { useQuery } from '@tanstack/react-query';
 import { useEffect, useMemo, useRef, useState } from 'react';
+import { HistorygramBarsType } from './types';
 
 export const usePriceFilterSection = () => {
   const { searchParams } = useFilters();
   const { maxPrice, minPrice, setMinPrice, setMaxPrice } = useFiltersStore();
-  const dropdownRef = useRef<HTMLElement>(null);
+  const dropdownRef = useRef<HTMLDivElement>(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const minPriceURL = Number(searchParams?.get('minPrice')) || minPrice;
@@ -18,15 +19,18 @@ export const usePriceFilterSection = () => {
     minPriceURL,
     maxPriceURL,
   ]);
-  const [priceRange, setPriceRange] = useState<[number, number]>([
+  const [priceRange, setPriceRange] = useState<number[]>([
     minPriceURL,
     maxPriceURL,
   ]);
 
-  useClickOutside(dropdownRef, () => {
-    setMinPrice(priceRange[0]);
-    setMaxPrice(priceRange[1]);
-    setIsMenuOpen(false);
+  useClickOutside({
+    ref: dropdownRef,
+    callback: () => {
+      setMinPrice(priceRange[0]);
+      setMaxPrice(priceRange[1]);
+      setIsMenuOpen(false);
+    },
   });
 
   const { data: hystogramData, isLoading } = useQuery({
@@ -49,7 +53,7 @@ export const usePriceFilterSection = () => {
       : 1;
   }, [hystogramData]);
 
-  const histogramBars = useMemo(() => {
+  const histogramBars = useMemo((): HistorygramBarsType[] => {
     if (!hystogramData?.histogram?.length) return [];
 
     const [min, max] = maxAndMinPrice;

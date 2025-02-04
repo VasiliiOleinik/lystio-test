@@ -1,4 +1,10 @@
-export const generateHistogramData = ({ histogram, range }) => {
+import { HystogramDataType } from '@/api/types';
+import { GenerateHistogramDataType } from './types';
+
+export const generateHistogramData = ({
+  histogram,
+  range,
+}: HystogramDataType): GenerateHistogramDataType[] => {
   const [min, max] = range;
   const step = (max - min) / histogram.length;
 

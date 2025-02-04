@@ -1,4 +1,3 @@
-import Card from '@/components/Card';
 import FilterInput from '@/components/FilterInput';
 import React from 'react';
 import { CATEGORY_OPTIONS } from './categories';
@@ -6,6 +5,7 @@ import { BUTTON_TYPES } from '@/constants';
 import { useCategoryFilter } from './useCategoryFilter';
 import { AnimatePresence } from 'motion/react';
 import { cn } from '@/utils';
+import AnimatedCard from '@/components/Card';
 
 const CategoryFilter = () => {
   const {
@@ -34,14 +34,8 @@ const CategoryFilter = () => {
       </div>
       <AnimatePresence>
         {isMenuOpen && (
-          <Card
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.2, ease: 'easeOut' }}
-            className="absolute top-[calc(100%+25px)] min-w-[444px] w-full"
-          >
-            <div className="flex flex-col">
+          <AnimatedCard>
+            <div className="flex min-w-[444px] w-full flex-col">
               <button
                 className="flex items-center justify-start mb-2 font-semibold text-lg"
                 onClick={() => handleSetCategory('')}
@@ -66,7 +60,7 @@ const CategoryFilter = () => {
                 );
               })}
             </div>
-          </Card>
+          </AnimatedCard>
         )}
       </AnimatePresence>
     </div>

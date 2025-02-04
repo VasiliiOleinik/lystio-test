@@ -1,20 +1,18 @@
+import { LocationType } from '@/types';
 import { create } from 'zustand';
 
 interface FiltersState {
   minPrice: number;
   maxPrice: number;
   category: string;
-  location: {
-    id: string;
-    name: string;
-  };
+  location: LocationType;
   locationName: string;
   rentType: string;
   searchCount: number;
   setMinPrice: (minPrice: number) => void;
   setMaxPrice: (maxPrice: number) => void;
   setCategory: (category: string) => void;
-  setLocation: (location: string) => void;
+  setLocation: (location: LocationType) => void;
   setRentType: (rentType: string) => void;
   setLocationName: (locationName: string) => void;
   setSearchCount: (searchCount: number) => void;
