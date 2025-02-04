@@ -6,6 +6,7 @@ import { useLocationFilter } from './useLocationFilter';
 import Cities from './Cities';
 import Districts from './Districts';
 import RecentLocations from './RecentLocations';
+import AddressAutocomplete from './AddressAutocomplete';
 
 const LocationFilter = () => {
   const {
@@ -19,6 +20,10 @@ const LocationFilter = () => {
     handleCitySelect,
     handleDistrictSelect,
     recentSearch,
+
+    handleSearch,
+    searchValue,
+    setSearchValue,
   } = useLocationFilter();
 
   const city = citiesAndDistricts?.find((c) => c.id === selectedCity);
@@ -33,6 +38,10 @@ const LocationFilter = () => {
           placeholder="Search address, neighbourhood, city, or ZIP code"
           label="Location"
           id="location-input"
+          value={searchValue}
+          onChange={(e) => {
+            setSearchValue(e.target.value);
+          }}
         >
           <img src="/search.svg" alt="Search" />
         </FilterInput>

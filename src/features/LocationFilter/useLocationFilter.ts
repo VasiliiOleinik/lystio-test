@@ -1,9 +1,15 @@
-import { getCitiesAndDistricts, getRecentSearch } from '@/api';
+'use client';
+import {
+  fetchSearchResults,
+  getCitiesAndDistricts,
+  getRecentSearch,
+} from '@/api';
 import { useClickOutside } from '@/hooks/useClickOutside';
 import useFilters from '@/hooks/useFilters';
 import { useFiltersStore } from '@/store/useFiltersStore';
 import { useQuery } from '@tanstack/react-query';
 import { useRef, useState } from 'react';
+import { useDebounce } from '@/hooks/useDebounce';
 
 export const useLocationFilter = () => {
   const { searchParams } = useFilters();
@@ -11,9 +17,10 @@ export const useLocationFilter = () => {
   const searchLocationValue = searchParams?.get('location') || location || '';
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const dropdownRef = useRef<HTMLElement>(null);
-
+  const [searchValue, setSearchValue] = useState('');
   const [selectedCity, setSelectedCity] = useState<string | null>(null);
   const [selectedDistrict, setSelectedDistrict] = useState<string | null>(null);
+  const debouncedSearchTerm = useDebounce(searchValue);
 
   const handleCitySelect = (cityId: string) => {
     setSelectedCity(cityId);
@@ -38,6 +45,16 @@ export const useLocationFilter = () => {
     queryFn: getRecentSearch,
   });
 
+  const { data: searchResults } = useQuery({
+    queryKey: ['mapboxSearch', debouncedSearchTerm],
+    queryFn: () => fetchSearchResults(debouncedSearchTerm),
+    enabled: !!debouncedSearchTerm,
+    staleTime: 1000 * 60,
+    retry: false,
+  });
+
+  console.log('searchResults', searchResults);
+
   return {
     searchLocationValue,
     isMenuOpen,
@@ -50,5 +67,8 @@ export const useLocationFilter = () => {
     handleCitySelect,
     handleDistrictSelect,
     recentSearch,
+
+    searchValue,
+    setSearchValue,
   };
 };
