@@ -16,6 +16,8 @@ export default {
         greyLystio: '#4F4040',
         middleGreyLystio: '#787878',
         lightGreyLystio: '#C6C6C6',
+        textLightGrey: '#0E0E0E',
+        activeOption: '#F7F7F7',
       },
       borderRadius: {
         '1000px': '1000px',

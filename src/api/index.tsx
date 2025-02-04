@@ -5,3 +5,15 @@ export async function getHystogramData() {
 
   return data;
 }
+
+export async function getCitiesAndDistricts() {
+  const { data } = await axiosInstance.get('/geo/boundary/popular');
+
+  return data;
+}
+
+export async function getRecentSearch() {
+  const { data } = await axiosInstance.get('/geo/search/recent');
+
+  return data;
+}
