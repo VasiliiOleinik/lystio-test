@@ -39,6 +39,7 @@ export const useLocationFilter = () => {
   const handleDistrictSelect = (location) => {
     setSelectedDistrict(location.id);
     handleSetLocation(location);
+    setIsMenuOpen(false);
   };
 
   useClickOutside(dropdownRef, () => setIsMenuOpen(false));

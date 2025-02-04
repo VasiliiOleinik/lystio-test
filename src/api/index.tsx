@@ -37,3 +37,15 @@ export async function fetchSearchResults(searchTerm: string) {
 
   return data.features || [];
 }
+
+export async function getSearchCount() {
+  const { data } = await axiosInstance.post('/tenement/search/count');
+
+  return data;
+}
+
+export async function tenementSearch(query: any) {
+  const { data } = await axiosInstance.post('/tenement/search', query);
+
+  return data;
+}

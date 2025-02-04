@@ -1,8 +1,12 @@
+'use client';
 import React from 'react';
 import Container from '../Container';
 import SearchFilters from '@/features/SearchFilters';
+import { useHeroSection } from './useHeroSection';
 
 const HeroSection = () => {
+  const { searchCount, totalCount } = useHeroSection();
+
   return (
     <div
       className="d-flex w-full min-h-[calc(100vh-87px)] bg-center bg-no-repeat"
@@ -17,8 +21,8 @@ const HeroSection = () => {
         </h1>
         <SearchFilters />
         <p className="italic text-center text-white mt-28">
-          73,278 verified listings <br></br>for apartments, houses, office and
-          more{' '}
+          {searchCount || totalCount?.count} verified listings <br></br>for
+          apartments, houses, office and more{' '}
         </p>
       </Container>
     </div>
