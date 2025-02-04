@@ -1,7 +1,7 @@
-"use client";
-import { useSearchParams, useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
-import { UseFilters } from "./types";
+'use client';
+import { useSearchParams, useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
+import { UseFilters } from './types';
 
 const useFilters = (): UseFilters => {
   const searchParams = useSearchParams();
