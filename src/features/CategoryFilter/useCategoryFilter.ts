@@ -1,18 +1,20 @@
 'use client';
+import { useFiltersStore } from '@/store/useFiltersStore';
 import { useClickOutside } from '@/hooks/useClickOutside';
 import useFilters from '@/hooks/useFilters';
 import { useRef, useState } from 'react';
 
 export const useCategoryFilter = () => {
-  const { searchParams, setFilter } = useFilters();
-  const searchCategoryValue = searchParams?.get('category') || '';
+  const { searchParams } = useFilters();
+  const { category, setCategory } = useFiltersStore();
+  const searchCategoryValue = searchParams?.get('category') || category || '';
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const dropdownRef = useRef<HTMLElement>(null);
 
   useClickOutside(dropdownRef, () => setIsMenuOpen(false));
 
   function handleSetCategory(value: string): void {
-    setFilter('category', value);
+    setCategory(value);
     setIsMenuOpen(false);
   }
 

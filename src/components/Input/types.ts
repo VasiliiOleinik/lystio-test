@@ -1,6 +1,8 @@
-import { Children } from '@/types';
+import { ClassName } from '@/types';
 
-export type InputProps = HTMLInputElement &
-  Children & {
-    label: string;
+export type InputProps = ClassName &
+  HTMLInputElement & {
+    label?: string;
+    onChange: (value: string) => void;
+    postfix?: string;
   };

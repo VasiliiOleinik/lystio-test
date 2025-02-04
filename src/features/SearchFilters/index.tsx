@@ -3,7 +3,7 @@ import LocationFilter from '@/features/LocationFilter';
 import React from 'react';
 import Button from '@/components/Button';
 import CategoryFilter from '@/features/CategoryFilter';
-import PriceFilter from '@/features/PriceFilter';
+import PriceFilterSection from '@/features/PriceFilterSection';
 import ToggleSwitch from '@/components/ToogleSwitch';
 import { TOOGLE_ITEMS } from './constants';
 
@@ -16,7 +16,7 @@ const SearchFilters = () => {
         <div className="border-x border-lightGreyLystio px-5">
           <CategoryFilter />
         </div>
-        <PriceFilter />
+        <PriceFilterSection />
         <Button state="active" size="small">
           Search
         </Button>

@@ -1,5 +1,5 @@
-import Card from '@/components/Card/inedex';
-import Input from '@/components/Input';
+import Card from '@/components/Card';
+import FilterInput from '@/components/FilterInput';
 import React from 'react';
 import { CATEGORY_OPTIONS } from './categories';
 import { BUTTON_TYPES } from '@/constants';
@@ -22,7 +22,7 @@ const CategoryFilter = () => {
         onClick={() => setIsMenuOpen(!isMenuOpen)}
         className="cursor-pointer"
       >
-        <Input
+        <FilterInput
           placeholder="Select Category"
           label="Category"
           id="category-input"
@@ -30,7 +30,7 @@ const CategoryFilter = () => {
           defaultValue={searchCategoryValue}
         >
           <img src="/category.svg" alt="Category" />
-        </Input>
+        </FilterInput>
       </div>
       <AnimatePresence>
         {isMenuOpen && (
