@@ -5,6 +5,7 @@ import { useFiltersStore } from '@/store/useFiltersStore';
 import { useQuery } from '@tanstack/react-query';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { HistorygramBarsType } from './types';
+import { useDebounce } from '@/hooks/useDebounce';
 
 export const usePriceFilterSection = () => {
   const { searchParams } = useFilters();
@@ -26,11 +27,7 @@ export const usePriceFilterSection = () => {
 
   useClickOutside({
     ref: dropdownRef,
-    callback: () => {
-      setMinPrice(priceRange[0]);
-      setMaxPrice(priceRange[1]);
-      setIsMenuOpen(false);
-    },
+    callback: () => setIsMenuOpen(false),
   });
 
   const { data: hystogramData, isLoading } = useQuery({
@@ -69,6 +66,13 @@ export const usePriceFilterSection = () => {
   }, [priceRange, hystogramData?.histogram]);
 
   const searchPriceValue = `${minPriceURL} - ${maxPriceURL} €`;
+
+  useEffect(() => {
+    if (!isMenuOpen) {
+      setMinPrice(priceRange[0]);
+      setMaxPrice(priceRange[1]);
+    }
+  }, [isMenuOpen]);
 
   return {
     dropdownRef,
