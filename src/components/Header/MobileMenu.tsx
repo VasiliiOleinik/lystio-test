@@ -23,7 +23,7 @@ export const MobileMenu = () => {
         size="small"
         onClick={toggleMenu}
         className={cn(
-          'py-2 px-4 transition-transform duration-300 ease-in-out',
+          'py-2 px-4 transition-transform duration-300 ease-in-out bg-white hover:bg-white shadow-custom',
           isMenuOpen ? 'transform -translate-x-[260px]' : ''
         )}
       >
