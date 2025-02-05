@@ -29,7 +29,7 @@ export const ToggleSwitch = ({
             buttonsRef.current[index] = el;
           }}
           className={cn(
-            'relative z-10 text-base font-medium py-4 px-10 transition-colors flex items-center justify-center whitespace-nowrap',
+            'relative z-10 text-base font-medium lg:py-4 lg:px-10 xsm:py-2 xsm:px-6 transition-colors flex items-center justify-center whitespace-nowrap',
             sliderValue === item.value ? 'text-white' : 'text-black'
           )}
           onClick={() => {
