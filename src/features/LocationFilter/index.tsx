@@ -1,3 +1,4 @@
+'use client';
 import { FilterInput, AnimatedCard } from '@/components';
 import { AnimatePresence } from 'motion/react';
 import React from 'react';
@@ -7,6 +8,7 @@ import Districts from './Districts';
 import RecentLocations from './RecentLocations';
 import { cn } from '@/utils';
 import { BUTTON_TYPES } from '@/constants';
+import Image from 'next/image';
 
 const LocationFilter = () => {
   const {
@@ -40,7 +42,7 @@ const LocationFilter = () => {
           value={searchValue}
           onChange={(e) => setSearchValue(e.target.value)}
         >
-          <img src="/search.svg" alt="Search" />
+          <Image src="/search.svg" alt="Search" width={21} height={22} />
         </FilterInput>
       </div>
 
@@ -64,7 +66,7 @@ const LocationFilter = () => {
                   className="flex items-center mb-4"
                   onClick={() => locationMutation()}
                 >
-                  <img
+                  <Image
                     src="/userlocationIcon.svg"
                     alt="Lystio logo"
                     width={37}

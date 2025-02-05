@@ -18,7 +18,7 @@ export const FilterInput = ({
         <input
           {...props}
           placeholder={placeholder}
-          type="text"
+          type={type}
           id={id}
           className={`placeholder-middleGreyLystio placeholder:font-medium placeholder:text-base 
                         outline-none border-b border-b-transparent focus:border-purpleLystio transition 

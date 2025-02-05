@@ -35,7 +35,7 @@ export const useToggleSwitch = ({
 
   useEffect(() => {
     updateSliderPosition(sliderValue);
-  }, [sliderValue, items]);
+  }, [sliderValue, items, updateSliderPosition]);
 
   return {
     sliderStyle,

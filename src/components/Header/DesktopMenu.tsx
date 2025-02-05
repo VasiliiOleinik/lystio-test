@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, Navigation } from '@/components';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export const DesktopMenu = () => {
   return (
@@ -9,7 +10,7 @@ export const DesktopMenu = () => {
         className={`lg:flex bg-white w-full items-center justify-between p-[12px_9px_17px_42px] flex-row xsm:hidden`}
       >
         <Link href="/">
-          <img src="/logo.svg" alt="Lystio logo" width={112} height={53} />
+          <Image src="/logo.svg" alt="Lystio logo" width={112} height={53} />
         </Link>
         <Navigation />
         <div

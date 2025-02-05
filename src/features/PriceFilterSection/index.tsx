@@ -1,3 +1,4 @@
+'use client';
 import { FilterInput, AnimatedCard } from '@/components';
 import React from 'react';
 import { AnimatePresence } from 'motion/react';
@@ -6,6 +7,7 @@ import HistorygramBars from './HistorygramBars';
 import PriceInputs from './PriceInputs';
 import { Range, getTrackBackground } from 'react-range';
 import { STEP } from './constants';
+import Image from 'next/image';
 
 const PriceFilterSection = () => {
   const {
@@ -34,7 +36,7 @@ const PriceFilterSection = () => {
           readOnly
           defaultValue={searchPriceValue}
         >
-          <img src="/price.svg" alt="Price" />
+          <Image src="/price.svg" alt="Price" width={30} height={29} />
         </FilterInput>
       </div>
       <AnimatePresence>

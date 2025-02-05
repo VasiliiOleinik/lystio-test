@@ -1,6 +1,7 @@
 import React from 'react';
 import { LOCATIONS_IMAGES } from './constants';
 import { CitiesComponentType } from './types';
+import Image from 'next/image';
 
 const Cities = ({
   citiesAndDistricts,
@@ -23,7 +24,7 @@ const Cities = ({
               isActive ? 'bg-activeOption' : 'hover:bg-activeOption'
             }`}
           >
-            <img
+            <Image
               src={LOCATIONS_IMAGES[city.name as keyof typeof LOCATIONS_IMAGES]}
               alt="City"
               width={47}
@@ -35,7 +36,7 @@ const Cities = ({
             </span>
 
             {!!isActive && (
-              <img
+              <Image
                 src="./arrow.svg"
                 alt="Arrow"
                 width={6}

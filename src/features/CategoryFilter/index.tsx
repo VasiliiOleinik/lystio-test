@@ -1,3 +1,4 @@
+'use client';
 import { FilterInput, AnimatedCard } from '@/components';
 import React from 'react';
 import { CATEGORY_OPTIONS } from './categories';
@@ -5,6 +6,7 @@ import { BUTTON_TYPES } from '@/constants';
 import { useCategoryFilter } from './useCategoryFilter';
 import { AnimatePresence } from 'motion/react';
 import { cn } from '@/utils';
+import Image from 'next/image';
 
 const CategoryFilter = () => {
   const {
@@ -28,7 +30,7 @@ const CategoryFilter = () => {
           readOnly
           defaultValue={searchCategoryValue}
         >
-          <img src="/category.svg" alt="Category" />
+          <Image src="/category.svg" alt="Category" width={24} height={25} />
         </FilterInput>
       </div>
       <AnimatePresence>

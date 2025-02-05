@@ -9,7 +9,7 @@ import { useClickOutside } from '@/hooks/useClickOutside';
 import useFilters from '@/hooks/useFilters';
 import { useFiltersStore } from '@/store/useFiltersStore';
 import { useMutation, useQuery } from '@tanstack/react-query';
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { useDebounce } from '@/hooks/useDebounce';
 import { LocationType } from '@/types';
 import { getUserLocation } from '@/hooks/getUserLocation';
@@ -32,10 +32,13 @@ export const useLocationFilter = () => {
 
   const debouncedSearchTerm = useDebounce(searchValue);
 
-  function handleSetLocation(location: LocationType): void {
-    setLocation(location);
-    setSearchValue(location.name);
-  }
+  const handleSetLocation = useCallback(
+    (location: LocationType): void => {
+      setLocation(location);
+      setSearchValue(location.name);
+    },
+    [setLocation]
+  );
 
   function handleCitySelect(location: LocationType): void {
     setSelectedCity(location.id);
@@ -92,7 +95,7 @@ export const useLocationFilter = () => {
     if (!isLoading && searchResults?.id) {
       handleSetLocation({ id: searchResults.id, name: searchResults.text });
     }
-  }, [isLoading, searchResults]);
+  }, [isLoading, searchResults, handleSetLocation]);
 
   return {
     searchLocationValue,

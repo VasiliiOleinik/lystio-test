@@ -4,6 +4,7 @@ import { Button, Navigation } from '@/components';
 import { motion } from 'motion/react';
 import { cn } from '@/utils';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export const MobileMenu = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -15,7 +16,7 @@ export const MobileMenu = () => {
   return (
     <div className="lg:hidden xsm:flex bg-white w-full p-2 justify-between">
       <Link href="/">
-        <img src="/logo.svg" alt="Lystio logo" width={112} height={53} />
+        <Image src="/logo.svg" alt="Lystio logo" width={112} height={53} />
       </Link>
       <Button
         state="active"
@@ -26,7 +27,7 @@ export const MobileMenu = () => {
           isMenuOpen ? 'transform -translate-x-[260px]' : ''
         )}
       >
-        <img
+        <Image
           src="/menu.svg"
           alt="Menu"
           width={24}

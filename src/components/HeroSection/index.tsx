@@ -1,9 +1,10 @@
 'use client';
-import React from 'react';
+import React, { Suspense } from 'react';
 import { Container } from '@/components';
 import SearchFilters from '@/features/SearchFilters';
 import { useHeroSection } from './useHeroSection';
 import { motion } from 'motion/react';
+import { Spinner } from '../Spinner';
 
 export const HeroSection = () => {
   const { searchCount, totalCount } = useHeroSection();
@@ -30,7 +31,10 @@ export const HeroSection = () => {
         >
           Rent faster, Buy smarter
         </motion.h1>
-        <SearchFilters />
+        <Suspense fallback={<Spinner />}>
+          <SearchFilters />
+        </Suspense>
+
         <p className="italic text-center text-white mt-28">
           {searchCount || totalCount?.count} verified listings <br></br>for
           apartments, houses, office and more{' '}

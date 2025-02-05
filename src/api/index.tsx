@@ -30,6 +30,7 @@ export async function getRecentSearch(): Promise<LocationType[]> {
   return data;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export async function fetchSearchResults(searchTerm: string): Promise<any> {
   const { data } = await axios.get(
     `${MAPBOX_BASE_URL}/${encodeURIComponent(searchTerm)}.json`,

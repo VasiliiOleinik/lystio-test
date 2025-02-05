@@ -26,6 +26,7 @@ type PagingType = {
 
 export type TenementSearchType = {
   paging: PagingType;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   res: any[];
 };
 

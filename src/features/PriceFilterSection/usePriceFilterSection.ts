@@ -1,3 +1,4 @@
+'use client';
 import { getHystogramData } from '@/api';
 import { useClickOutside } from '@/hooks/useClickOutside';
 import useFilters from '@/hooks/useFilters';
@@ -5,7 +6,6 @@ import { useFiltersStore } from '@/store/useFiltersStore';
 import { useQuery } from '@tanstack/react-query';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { HistorygramBarsType } from './types';
-import { useDebounce } from '@/hooks/useDebounce';
 
 export const usePriceFilterSection = () => {
   const { searchParams } = useFilters();
@@ -38,7 +38,7 @@ export const usePriceFilterSection = () => {
   useEffect(() => {
     if (!hystogramData || isLoading) return;
 
-    let [min, max] = hystogramData.range || [minPrice, maxPrice];
+    const [min, max] = hystogramData.range || [minPrice, maxPrice];
 
     setPriceRange([min, max]);
     setMaxAndMinPrice([min, max]);
@@ -63,7 +63,7 @@ export const usePriceFilterSection = () => {
 
       return { count, isActive, barMin, barMax };
     });
-  }, [priceRange, hystogramData?.histogram]);
+  }, [priceRange, hystogramData?.histogram, maxAndMinPrice]);
 
   const searchPriceValue = `${minPriceURL} - ${maxPriceURL} €`;
 
@@ -72,7 +72,7 @@ export const usePriceFilterSection = () => {
       setMinPrice(priceRange[0]);
       setMaxPrice(priceRange[1]);
     }
-  }, [isMenuOpen]);
+  }, [isMenuOpen, priceRange, setMinPrice, setMaxPrice]);
 
   return {
     dropdownRef,
