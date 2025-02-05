@@ -84,5 +84,6 @@ export const useLocationFilter = () => {
     recentSearch,
     searchValue,
     setSearchValue,
+    setSelectedCity,
   };
 };

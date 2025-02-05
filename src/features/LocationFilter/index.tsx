@@ -7,6 +7,7 @@ import Districts from './Districts';
 import RecentLocations from './RecentLocations';
 import AnimatedCard from '@/components/Card';
 import { cn } from '@/utils';
+import { BUTTON_TYPES } from '@/constants';
 
 const LocationFilter = () => {
   const {
@@ -21,6 +22,7 @@ const LocationFilter = () => {
     recentSearch,
     searchValue,
     setSearchValue,
+    setSelectedCity,
   } = useLocationFilter();
 
   const city = citiesAndDistricts?.find((c) => c.id === selectedCity);
@@ -47,14 +49,14 @@ const LocationFilter = () => {
           <AnimatedCard>
             <div
               className={cn(
-                `min-w-[370px] flex items-start justify-start`,
-                city ? 'w-[772px]' : ''
+                `lg:min-w-[370px]flex items-start justify-start xsm:w-full`,
+                city ? 'lg:w-[772px] xsm:w-full' : ''
               )}
             >
               <div
                 className={cn(
-                  `flex flex-col max-w-1/2 w-full max-h-[400px] overflow-auto`,
-                  city ? 'max-w-1/2' : ''
+                  `lg:flex flex-col lg:max-w-1/2 lg:w-full max-h-[400px] overflow-auto `,
+                  city ? 'lg:max-w-1/2 xsm:hidden' : 'xsm:w-full'
                 )}
               >
                 <Cities
@@ -70,14 +72,24 @@ const LocationFilter = () => {
                   />
                 )}
               </div>
+
               {!!city && (
-                <div className="flex flex-col max-w-1/2 w-full max-h-[400px] overflow-auto">
-                  <Districts
-                    city={city}
-                    handleDistrictSelect={handleDistrictSelect}
-                    selectedDistrict={selectedDistrict}
-                  />
-                </div>
+                <>
+                  <button
+                    type={BUTTON_TYPES.button}
+                    className="lg:hidden xsm:flex xsm:mb-2"
+                    onClick={() => setSelectedCity('')}
+                  >
+                    Back
+                  </button>
+                  <div className="flex flex-col lg:max-w-1/2 lg:w-full max-h-[400px] overflow-auto xsm:w-full">
+                    <Districts
+                      city={city}
+                      handleDistrictSelect={handleDistrictSelect}
+                      selectedDistrict={selectedDistrict}
+                    />
+                  </div>
+                </>
               )}
             </div>
           </AnimatedCard>

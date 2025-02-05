@@ -7,8 +7,8 @@ const Navigation = () => {
   return (
     <div
       className={`
-      flex lg:items-center lg:gap-11 lg:flex-row
-      sm:flex-col sm:gap-6 sm:mt-1 sm:mb-6 sm:items-start
+      flex lg:items-center lg:gap-11 lg:flex-row lg:mb-0 lg:mt-0
+      xsm:flex-col xsm:gap-6 xsm:mt-1 xsm:mb-6 xsm:items-start
     `}
     >
       <Link href="/" className={linkClassName}>

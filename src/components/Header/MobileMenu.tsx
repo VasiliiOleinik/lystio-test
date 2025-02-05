@@ -12,7 +12,7 @@ const MobileMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
   return (
-    <div className="lg:hidden sm:flex bg-white w-full p-2 justify-between">
+    <div className="lg:hidden xsm:flex bg-white w-full p-2 justify-between">
       <img src="/logo.svg" alt="Lystio logo" width={112} height={53} />
       <Button
         state="active"
@@ -44,10 +44,10 @@ const MobileMenu = () => {
         <div
           className={`
               flex items-center lg:flex-row
-              sm:flex-col 
+              xsm:flex-col 
           `}
         >
-          <Button className={`lg:mr-3 sm:mb-3`}>Log-in</Button>
+          <Button className={`lg:mr-3 xsm:mb-3`}>Log-in</Button>
           <Button state="active">Register</Button>
         </div>
       </motion.div>

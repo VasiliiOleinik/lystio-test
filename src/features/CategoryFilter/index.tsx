@@ -35,7 +35,7 @@ const CategoryFilter = () => {
       <AnimatePresence>
         {isMenuOpen && (
           <AnimatedCard>
-            <div className="flex min-w-[444px] w-full flex-col">
+            <div className="flex lg:min-w-[444px] lg:w-full flex-col xsm:w-full">
               <button
                 className="flex items-center justify-start mb-2 font-semibold text-lg"
                 onClick={() => handleSetCategory('')}

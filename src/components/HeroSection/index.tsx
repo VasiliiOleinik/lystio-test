@@ -9,7 +9,7 @@ const HeroSection = () => {
 
   return (
     <div
-      className="d-flex w-full min-h-[calc(100vh-87px)] bg-center bg-no-repeat"
+      className="flex w-full min-h-[calc(100vh-87px)] bg-center bg-no-repeat"
       style={{
         backgroundImage: "url('/main_bg.png')",
         backgroundSize: 'cover',
@@ -18,8 +18,9 @@ const HeroSection = () => {
       <Container>
         <h1
           className={`
-          text-white text-7xl pl-3
-            lg:mt-20 lg:mb-14
+          text-white 
+            xsm:text-5xl xsm:mt-14 xsm:mb-10 xsm:pl-0
+            lg:mt-20 lg:mb-14 lg:text-7xl lg:pl-3
             2xl:mt-36 2xl:mb-28
           `}
         >

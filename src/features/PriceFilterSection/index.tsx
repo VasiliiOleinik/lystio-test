@@ -41,7 +41,7 @@ const PriceFilterSection = () => {
       <AnimatePresence>
         {isMenuOpen && (
           <AnimatedCard>
-            <div className="xl:w-[500px] lg:w-[350px]">
+            <div className="xl:w-[500px] lg:w-[350px] xsm:w-full">
               <p className="text-lg font-semibold mb-3">Price Range</p>
 
               <HistorygramBars

@@ -14,20 +14,21 @@ const SearchFilters = () => {
   return (
     <div className="flex flex-col">
       <ToggleSwitch
-        className="mb-6 ml-6"
+        className="mb-6 lg:ml-6 xsm:ml-0"
         items={TOOGLE_ITEMS}
         deafultValue={defaultRentType}
         onChange={(value) => setRentType(value)}
       />
       <div
         className={`
-          w-full bg-white rounded-1000px p-5 grid gap-4
-          lg:grid-cols-[1fr_1fr_1fr_0.5fr]
+          w-full bg-white p-5
+          xsm:flex xsm:flex-col xsm:rounded-3xl
+          lg:grid-cols-[1fr_1fr_1fr_0.5fr] lg:grid lg:gap-4 lg:rounded-1000px 
           2xl:grid-cols-[2fr_1fr_1fr_0.5fr]
       `}
       >
         <LocationFilter />
-        <div className="border-x border-lightGreyLystio px-5">
+        <div className="lg:border-x lg:border-lightGreyLystio lg:px-5 xsm:border-none xsm:px-0">
           <CategoryFilter />
         </div>
         <PriceFilterSection />

@@ -25,6 +25,9 @@ export default {
       boxShadow: {
         custom: '0px 14px 32px rgba(0, 0, 0, 0.1)',
       },
+      screens: {
+        xsm: '420px',
+      },
     },
   },
   plugins: [],
