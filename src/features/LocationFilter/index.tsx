@@ -51,7 +51,7 @@ const LocationFilter = () => {
           <AnimatedCard>
             <div
               className={cn(
-                `lg:min-w-[370px] flex items-start justify-start xsm:w-full`,
+                `lg:min-w-[370px] flex items-start justify-start xsm:w-full lg:flex-row xsm:flex-col`,
                 city ? 'lg:w-[772px] xsm:w-full' : ''
               )}
             >
