@@ -19,7 +19,13 @@ const SearchFilters = () => {
         deafultValue={defaultRentType}
         onChange={(value) => setRentType(value)}
       />
-      <div className="w-full bg-white rounded-1000px p-5 grid grid-cols-[2fr_1fr_1fr_0.5fr] gap-4">
+      <div
+        className={`
+          w-full bg-white rounded-1000px p-5 grid gap-4
+          lg:grid-cols-[1fr_1fr_1fr_0.5fr]
+          2xl:grid-cols-[2fr_1fr_1fr_0.5fr]
+      `}
+      >
         <LocationFilter />
         <div className="border-x border-lightGreyLystio px-5">
           <CategoryFilter />

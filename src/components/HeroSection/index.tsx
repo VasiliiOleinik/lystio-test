@@ -16,7 +16,13 @@ const HeroSection = () => {
       }}
     >
       <Container>
-        <h1 className="mt-36 mb-28 text-white text-7xl pl-3">
+        <h1
+          className={`
+          text-white text-7xl pl-3
+            lg:mt-20 lg:mb-14
+            2xl:mt-36 2xl:mb-28
+          `}
+        >
           Rent faster, Buy smarter
         </h1>
         <SearchFilters />

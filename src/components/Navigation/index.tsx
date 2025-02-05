@@ -5,7 +5,12 @@ const linkClassName = `text-black text-lg font-medium hover:text-purpleLystio tr
 
 const Navigation = () => {
   return (
-    <div className="flex items-center gap-11">
+    <div
+      className={`
+      flex lg:items-center lg:gap-11 lg:flex-row
+      sm:flex-col sm:gap-6 sm:mt-1 sm:mb-6 sm:items-start
+    `}
+    >
       <Link href="/" className={linkClassName}>
         Rent/Buy
       </Link>
