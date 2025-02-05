@@ -22,6 +22,7 @@ const LocationFilter = () => {
     searchValue,
     setSearchValue,
     setSelectedCity,
+    locationMutation,
   } = useLocationFilter();
 
   const city = citiesAndDistricts?.find((c) => c.id === selectedCity);
@@ -58,6 +59,23 @@ const LocationFilter = () => {
                   city ? 'lg:max-w-1/2 xsm:hidden' : 'xsm:w-full'
                 )}
               >
+                <button
+                  type="button"
+                  className="flex items-center mb-4"
+                  onClick={() => locationMutation()}
+                >
+                  <img
+                    src="/userlocationIcon.svg"
+                    alt="Lystio logo"
+                    width={37}
+                    height={37}
+                  />
+                  <div className="flex flex-col ml-4 text-left">
+                    <span className="text-black text-base font-medium mb-2">
+                      Current Location
+                    </span>
+                  </div>
+                </button>
                 <Cities
                   handleCitySelect={handleCitySelect}
                   selectedCity={selectedCity}

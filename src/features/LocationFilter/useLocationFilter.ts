@@ -1,16 +1,18 @@
 'use client';
 import {
   fetchSearchResults,
+  getAddressFromCoords,
   getCitiesAndDistricts,
   getRecentSearch,
 } from '@/api';
 import { useClickOutside } from '@/hooks/useClickOutside';
 import useFilters from '@/hooks/useFilters';
 import { useFiltersStore } from '@/store/useFiltersStore';
-import { useQuery } from '@tanstack/react-query';
-import { useRef, useState } from 'react';
+import { useMutation, useQuery } from '@tanstack/react-query';
+import { useEffect, useRef, useState } from 'react';
 import { useDebounce } from '@/hooks/useDebounce';
 import { LocationType } from '@/types';
+import { getUserLocation } from '@/hooks/getUserLocation';
 
 export const useLocationFilter = () => {
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -24,6 +26,9 @@ export const useLocationFilter = () => {
   const [searchValue, setSearchValue] = useState(locationName);
   const [selectedCity, setSelectedCity] = useState<string>('');
   const [selectedDistrict, setSelectedDistrict] = useState<string>('');
+  const [coords, setCoords] = useState<{ lat: number; lon: number } | null>(
+    null
+  );
 
   const debouncedSearchTerm = useDebounce(searchValue);
 
@@ -40,7 +45,7 @@ export const useLocationFilter = () => {
 
   function handleDistrictSelect(location: LocationType): void {
     setSelectedDistrict(location.id);
-    handleSetLocation(location);
+    setSearchValue(location.name);
     setIsMenuOpen(false);
   }
 
@@ -61,7 +66,7 @@ export const useLocationFilter = () => {
     queryFn: getRecentSearch,
   });
 
-  const { data: searchResults = [] } = useQuery({
+  const { data: searchResults = [], isLoading } = useQuery({
     queryKey: ['mapboxSearch', debouncedSearchTerm],
     queryFn: () => fetchSearchResults(debouncedSearchTerm),
     enabled: !!debouncedSearchTerm,
@@ -69,7 +74,25 @@ export const useLocationFilter = () => {
     retry: false,
   });
 
-  console.log('searchResults', searchResults);
+  const { mutate: locationMutation } = useMutation({
+    mutationFn: getUserLocation,
+    onSuccess: (coords) => setCoords(coords),
+    onError: () => alert('Location error'),
+  });
+
+  const { data: address } = useQuery({
+    queryKey: ['address', coords],
+    queryFn: () => getAddressFromCoords(coords!.lat, coords!.lon),
+    enabled: !!coords,
+  });
+
+  console.log('address', address);
+
+  useEffect(() => {
+    if (!isLoading && searchResults?.id) {
+      handleSetLocation({ id: searchResults.id, name: searchResults.text });
+    }
+  }, [isLoading, searchResults]);
 
   return {
     searchLocationValue,
@@ -85,5 +108,6 @@ export const useLocationFilter = () => {
     searchValue,
     setSearchValue,
     setSelectedCity,
+    locationMutation,
   };
 };

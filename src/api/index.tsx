@@ -35,15 +35,36 @@ export async function fetchSearchResults(searchTerm: string): Promise<any> {
     `${MAPBOX_BASE_URL}/${encodeURIComponent(searchTerm)}.json`,
     {
       params: {
-        accessToken: process.env.NEXT_PUBLIC_MAPBOX_KEY!,
+        access_token: process.env.NEXT_PUBLIC_MAPBOX_KEY!,
         language: 'de',
         country: 'at',
-        types: 'address,district,place,locality,neighborhood,city,street,poi',
+        types: 'address,district,place,locality,neighborhood,postcode',
       },
     }
   );
 
-  return data.features || [];
+  return data.features[0] || [];
+}
+
+export async function getAddressFromCoords(
+  lat: number,
+  lon: number
+): Promise<string | null> {
+  try {
+    const { data } = await axios.get(`${MAPBOX_BASE_URL}/${lon},${lat}.json`, {
+      params: {
+        access_token: process.env.NEXT_PUBLIC_MAPBOX_KEY!,
+        language: 'de',
+        country: 'at',
+        types: 'address,place,locality,neighborhood',
+      },
+    });
+
+    return data.features?.[0]?.place_name || null;
+  } catch (error) {
+    console.error('Error fetching address:', error);
+    return null;
+  }
 }
 
 export async function getSearchCount(): Promise<SearchCountType> {
