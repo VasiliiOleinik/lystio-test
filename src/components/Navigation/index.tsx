@@ -1,9 +1,10 @@
 import Link from 'next/link';
 import React from 'react';
+import { NAVIGATION_LINKS } from './constants';
 
 const linkClassName = `text-black text-lg font-medium hover:text-purpleLystio transition-all duration-200 ease-in-out`;
 
-const Navigation = () => {
+export const Navigation = () => {
   return (
     <div
       className={`
@@ -11,20 +12,13 @@ const Navigation = () => {
       xsm:flex-col xsm:gap-6 xsm:mt-1 xsm:mb-6 xsm:items-start
     `}
     >
-      <Link href="/" className={linkClassName}>
-        Rent/Buy
-      </Link>
-      <Link href="/" className={linkClassName}>
-        For Owners
-      </Link>
-      <Link href="/" className={linkClassName}>
-        For Brokers
-      </Link>
-      <Link href="/" className={linkClassName}>
-        About Us
-      </Link>
+      {NAVIGATION_LINKS.map((link) => (
+        <Link key={link.name} href={link.href} className={linkClassName}>
+          {link.name}
+        </Link>
+      ))}
     </div>
   );
 };
 
-export default Navigation;
+Navigation.componentName = 'Navigation';

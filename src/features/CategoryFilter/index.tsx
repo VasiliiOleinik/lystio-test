@@ -1,11 +1,10 @@
-import FilterInput from '@/components/FilterInput';
+import { FilterInput, AnimatedCard } from '@/components';
 import React from 'react';
 import { CATEGORY_OPTIONS } from './categories';
 import { BUTTON_TYPES } from '@/constants';
 import { useCategoryFilter } from './useCategoryFilter';
 import { AnimatePresence } from 'motion/react';
 import { cn } from '@/utils';
-import AnimatedCard from '@/components/Card';
 
 const CategoryFilter = () => {
   const {

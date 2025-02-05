@@ -2,7 +2,7 @@ import { motion } from 'motion/react';
 import React from 'react';
 import { AnimatedCardProps } from './types';
 
-const AnimatedCard = ({
+export const AnimatedCard = ({
   children,
   className = '',
   ...rest
@@ -25,4 +25,4 @@ const AnimatedCard = ({
   );
 };
 
-export default AnimatedCard;
+AnimatedCard.componentName = 'AnimatedCard';

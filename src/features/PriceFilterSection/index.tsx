@@ -1,11 +1,10 @@
-import FilterInput from '@/components/FilterInput';
+import { FilterInput, AnimatedCard } from '@/components';
 import React from 'react';
 import { AnimatePresence } from 'motion/react';
 import { usePriceFilterSection } from './usePriceFilterSection';
 import HistorygramBars from './HistorygramBars';
 import PriceInputs from './PriceInputs';
 import { Range, getTrackBackground } from 'react-range';
-import AnimatedCard from '@/components/Card';
 import { STEP } from './constants';
 
 const PriceFilterSection = () => {

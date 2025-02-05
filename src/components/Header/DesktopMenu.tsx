@@ -1,14 +1,16 @@
 import React from 'react';
-import Navigation from '../Navigation';
-import Button from '../Button';
+import { Button, Navigation } from '@/components';
+import Link from 'next/link';
 
-const DesktopMenu = () => {
+export const DesktopMenu = () => {
   return (
     <>
       <div
         className={`lg:flex bg-white w-full items-center justify-between p-[12px_9px_17px_42px] flex-row xsm:hidden`}
       >
-        <img src="/logo.svg" alt="Lystio logo" width={112} height={53} />
+        <Link href="/">
+          <img src="/logo.svg" alt="Lystio logo" width={112} height={53} />
+        </Link>
         <Navigation />
         <div
           className={`
@@ -26,4 +28,4 @@ const DesktopMenu = () => {
   );
 };
 
-export default DesktopMenu;
+DesktopMenu.componentName = 'DesktopMenu';

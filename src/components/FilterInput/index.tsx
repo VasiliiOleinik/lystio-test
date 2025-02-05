@@ -1,7 +1,7 @@
 import React from 'react';
 import { FilterInputProps } from './types';
 
-const FilterInput = ({
+export const FilterInput = ({
   placeholder = '',
   type = 'text',
   className = '',
@@ -31,4 +31,4 @@ const FilterInput = ({
   );
 };
 
-export default FilterInput;
+FilterInput.componentName = 'FilterInput';

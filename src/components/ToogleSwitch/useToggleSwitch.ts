@@ -1,3 +1,4 @@
+'use client';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { UseToggleSwitchProps } from './types';
 import { INITIAL_LEFT, INITIAL_WIDTH } from './constants';

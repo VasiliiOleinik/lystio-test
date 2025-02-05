@@ -1,6 +1,6 @@
 import { ClassName } from '@/types';
 
-export type ToggleItem = {
+type ToggleItem = {
   value: string;
   name: string;
   icon?: React.ReactNode;

@@ -1,10 +1,11 @@
 'use client';
 import React from 'react';
-import Container from '../Container';
+import { Container } from '@/components';
 import SearchFilters from '@/features/SearchFilters';
 import { useHeroSection } from './useHeroSection';
+import { motion } from 'motion/react';
 
-const HeroSection = () => {
+export const HeroSection = () => {
   const { searchCount, totalCount } = useHeroSection();
 
   return (
@@ -16,7 +17,10 @@ const HeroSection = () => {
       }}
     >
       <Container>
-        <h1
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: 'easeOut' }}
           className={`
           text-white 
             xsm:text-5xl xsm:mt-14 xsm:mb-10 xsm:pl-0
@@ -25,7 +29,7 @@ const HeroSection = () => {
           `}
         >
           Rent faster, Buy smarter
-        </h1>
+        </motion.h1>
         <SearchFilters />
         <p className="italic text-center text-white mt-28">
           {searchCount || totalCount?.count} verified listings <br></br>for
@@ -36,4 +40,4 @@ const HeroSection = () => {
   );
 };
 
-export default HeroSection;
+HeroSection.componentName = 'HeroSection';

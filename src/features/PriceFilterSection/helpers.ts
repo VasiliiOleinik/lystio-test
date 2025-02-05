@@ -1,10 +1,10 @@
 import { HystogramDataType } from '@/api/types';
 import { GenerateHistogramDataType } from './types';
 
-export const generateHistogramData = ({
+export function generateHistogramData({
   histogram,
   range,
-}: HystogramDataType): GenerateHistogramDataType[] => {
+}: HystogramDataType): GenerateHistogramDataType[] {
   const [min, max] = range;
   const step = (max - min) / histogram.length;
 
@@ -12,4 +12,4 @@ export const generateHistogramData = ({
     price: Math.round(min + index * step),
     count,
   }));
-};
+}

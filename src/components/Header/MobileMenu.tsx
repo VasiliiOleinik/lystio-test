@@ -1,19 +1,22 @@
 'use client';
 import React, { useState } from 'react';
-import Navigation from '../Navigation';
-import Button from '../Button';
+import { Button, Navigation } from '@/components';
 import { motion } from 'motion/react';
 import { cn } from '@/utils';
+import Link from 'next/link';
 
-const MobileMenu = () => {
+export const MobileMenu = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
+
   return (
     <div className="lg:hidden xsm:flex bg-white w-full p-2 justify-between">
-      <img src="/logo.svg" alt="Lystio logo" width={112} height={53} />
+      <Link href="/">
+        <img src="/logo.svg" alt="Lystio logo" width={112} height={53} />
+      </Link>
       <Button
         state="active"
         size="small"
@@ -55,4 +58,4 @@ const MobileMenu = () => {
   );
 };
 
-export default MobileMenu;
+MobileMenu.componentName = 'MobileMenu';

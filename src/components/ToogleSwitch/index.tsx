@@ -3,8 +3,8 @@ import { cn } from '@/utils';
 import { ToggleSwitchProps } from './types';
 import { useToggleSwitch } from './useToggleSwitch';
 
-const ToggleSwitch = ({
-  items,
+export const ToggleSwitch = ({
+  items = [],
   className = '',
   onChange,
   deafultValue = '',
@@ -45,4 +45,4 @@ const ToggleSwitch = ({
   );
 };
 
-export default ToggleSwitch;
+ToggleSwitch.componentName = 'ToggleSwitch';

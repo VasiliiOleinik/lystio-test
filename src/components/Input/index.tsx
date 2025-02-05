@@ -1,7 +1,7 @@
 import React from 'react';
 import { InputProps } from './types';
 
-const Input = ({
+export const Input = ({
   label = '',
   type = 'text',
   onChange,
@@ -28,4 +28,4 @@ const Input = ({
   );
 };
 
-export default Input;
+Input.componentName = 'Input';

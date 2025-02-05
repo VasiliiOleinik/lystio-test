@@ -1,11 +1,10 @@
-import FilterInput from '@/components/FilterInput';
+import { FilterInput, AnimatedCard } from '@/components';
 import { AnimatePresence } from 'motion/react';
 import React from 'react';
 import { useLocationFilter } from './useLocationFilter';
 import Cities from './Cities';
 import Districts from './Districts';
 import RecentLocations from './RecentLocations';
-import AnimatedCard from '@/components/Card';
 import { cn } from '@/utils';
 import { BUTTON_TYPES } from '@/constants';
 
@@ -49,7 +48,7 @@ const LocationFilter = () => {
           <AnimatedCard>
             <div
               className={cn(
-                `lg:min-w-[370px]flex items-start justify-start xsm:w-full`,
+                `lg:min-w-[370px] flex items-start justify-start xsm:w-full`,
                 city ? 'lg:w-[772px] xsm:w-full' : ''
               )}
             >

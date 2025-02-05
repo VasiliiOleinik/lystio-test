@@ -3,7 +3,7 @@ import { cn } from '@/utils';
 import React from 'react';
 import { ButtonProps, buttonVariants } from './helpers';
 
-const Button = ({
+export const Button = ({
   type = BUTTON_TYPES.button,
   state = 'inactive',
   size = 'medium',
@@ -22,4 +22,4 @@ const Button = ({
   );
 };
 
-export default Button;
+Button.componentName = 'Button';

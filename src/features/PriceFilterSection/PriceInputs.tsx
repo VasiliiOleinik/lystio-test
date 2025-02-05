@@ -1,4 +1,4 @@
-import Input from '@/components/Input';
+import { Input } from '@/components';
 import React from 'react';
 import { PriceInputsProps } from './types';
 

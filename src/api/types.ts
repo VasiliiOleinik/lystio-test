@@ -17,7 +17,7 @@ export type SearchCountType = {
   count: number;
 };
 
-export type PagingType = {
+type PagingType = {
   page: number;
   pageCount: number;
   pageSize: number;

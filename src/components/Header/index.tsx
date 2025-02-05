@@ -1,10 +1,8 @@
 import React from 'react';
-import Navigation from '../Navigation';
-import Button from '../Button';
-import DesktopMenu from './DesktopMenu';
-import MobileMenu from './MobileMenu';
+import { DesktopMenu } from './DesktopMenu';
+import { MobileMenu } from './MobileMenu';
 
-const Header = () => {
+export const Header = () => {
   return (
     <>
       <MobileMenu />
@@ -13,4 +11,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+Header.componentName = 'Header';
